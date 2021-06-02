@@ -7,6 +7,13 @@ provided by [*Blind*](https://www.teamblind.com/).
 
 ## Compilation instructions
 
+### C++
+
 ```bash
 g++ -Wall -Wextra -Werror -O3 -std=c++17 -pedantic -o main.out main.cpp && ./main.out
 ```
+
+## License
+
+Dual-licensed under Unlicense and MIT.
+
