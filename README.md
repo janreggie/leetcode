@@ -10,7 +10,7 @@ provided by [*Blind*](https://www.teamblind.com/).
 ### C++
 
 ```bash
-g++ -Wall -Wextra -Werror -O3 -std=c++17 -pedantic -o main.out main.cpp && ./main.out
+g++ -Wall -Wextra -Werror -O3 -std=c++17 -pedantic -fsanitize=address -o main.out main.cpp && ./main.out
 ```
 
 ## License
