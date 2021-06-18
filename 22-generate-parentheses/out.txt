@@ -1,0 +1,4 @@
+At n=4, ind=4
+At n=4, ind=3
+At n=4, ind=2
+At n=4, ind=1
