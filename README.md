@@ -16,4 +16,3 @@ g++ -Wall -Wextra -Werror -O3 -std=c++17 -pedantic -fsanitize=address -o main.ou
 ## License
 
 Dual-licensed under Unlicense and MIT.
-
