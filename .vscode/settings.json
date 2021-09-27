@@ -76,5 +76,7 @@
     "variant": "cpp"
   },
   "C_Cpp.default.cStandard": "c17",
-  "C_Cpp.default.cppStandard": "c++17"
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.clang_format_path": "/usr/bin/clang-format-13",
+  "editor.formatOnSave": true
 }

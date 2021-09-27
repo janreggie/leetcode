@@ -1,0 +1,8 @@
+---
+BasedOnStyle: Mozilla
+---
+Language: Cpp
+IndentWidth: 8
+UseTab: ForContinuationAndIndentation
+IndentAccessModifiers: false
+AccessModifierOffset: -8
