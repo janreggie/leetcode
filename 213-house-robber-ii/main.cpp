@@ -1,47 +1,50 @@
-#include <vector>
 #include <iostream>
+#include <vector>
 
-class Solution {
+class Solution
+{
 public:
-	int rob(const std::vector<int>& nums) {
-
-		const size_t length{nums.size()};
-		if (length == 1) { return nums.at(0); }
-		if (length == 2) {
-			return nums.at(0) > nums.at(1) ? nums.at(0) : nums.at(1);
+	int rob(const std::vector<int>& nums)
+	{
+		const size_t n = nums.size();
+		if (n == 0) {
+			return 0;
 		}
-
-		const int moneyWithoutFirst{robLinear(std::vector<int>(nums.begin()+1, nums.end()))};
-		const int moneyWithoutLast{robLinear(std::vector<int>(nums.begin(), nums.end()-1))};
-		return moneyWithoutFirst > moneyWithoutLast ? moneyWithoutFirst : moneyWithoutLast;
+		if (n == 1) {
+			return nums[0];
+		}
+		return std::max(
+		  robLinear(std::vector(nums.begin(), nums.end() - 1)),
+		  robLinear(std::vector(nums.begin() + 1, nums.end())));
 	}
 
-	int robLinear(const std::vector<int>& nums) {
-
-		const size_t length{nums.size()};
-		if (length == 1) { return nums.at(0); }
-		if (length == 2) {
-			return nums.at(0) > nums.at(1) ? nums.at(0) : nums.at(1);
+private:
+	int robLinear(const std::vector<int>& nums)
+	{
+		const size_t n = nums.size();
+		if (n == 0) {
+			return 0;
+		}
+		if (n == 1) {
+			return nums[0];
 		}
 
-		// accumulated[ii] = accumulated[ii+2] + nums[ii] or 
-		//                   accumulated[ii+3] + nums[ii],
-		// whichever is greater
-		std::vector<int> accumulated(nums);
-		accumulated[length-3] += nums.at(length-1);
-		for (size_t ii{length-4}; ii < length; --ii) {
-			accumulated[ii] += (accumulated[ii+2] > accumulated[ii+3] ?
-					    accumulated[ii+2] :
-					    accumulated[ii+3]);
+		std::vector<int> dp(n);
+		dp[n - 1] = nums[n - 1];
+		dp[n - 2] = std::max(nums[n - 2], nums[n - 1]);
+		for (size_t ind = n - 3; ind < n; --ind) {
+			dp[ind] = std::max(nums[ind] + dp[ind + 2], dp[ind + 1]);
 		}
 
-		return accumulated[0] > accumulated[1] ? accumulated[0] : accumulated[1];
+		return std::max(dp[0], dp[1]);
 	}
 };
 
-int main() {
+int
+main()
+{
 
-	const std::vector<int> houses{5,6,131,4,6,696,7,420};
+	const std::vector<int> houses{ 5, 6, 131, 4, 6, 696, 7, 420 };
 	Solution soln;
 	std::cout << soln.rob(houses) << std::endl;
 }
