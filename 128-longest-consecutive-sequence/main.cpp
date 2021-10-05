@@ -1,41 +1,38 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <algorithm>
+#include <unordered_set>
+#include <vector>
 
-class Solution {
+class Solution
+{
 public:
-    int longestConsecutive(const vector<int>& nums) {
-        
-        if (nums.size() < 2) { return (int)(nums.size()); }
-        
-        unordered_set<int> numbers;
-        unordered_set<int> starts;
-        
-        for (const int& num : nums) {
-            numbers.insert(num);
-        }
-        
-        for (const int& num : numbers) {
-            if (numbers.count(num+1) != 0 && numbers.count(num-1) == 0) {
-                starts.insert(num);
-            }
-        }
+	int longestConsecutive(const std::vector<int>& nums)
+	{
+		if (nums.size() == 0) {
+			return 0;
+		}
 
-        int record{1};
-        for (const int& start : starts) {
-            int current{1};
-            for (int num{start+1}; numbers.count(num) != 0; ++num) {
-                ++current;
-            }
-            record = max(record, current);
-        }
-        
-        return record;
-    }
+		std::unordered_set<int> numbers;
+		for (const int num : nums) {
+			numbers.insert(num);
+		}
+
+		// starts are numbers that are also beginnings of some continuous sequence
+		std::unordered_set<int> starts;
+		for (const int num : nums) {
+			if (numbers.count(num - 1) == 0 && numbers.count(num + 1) != 0) {
+				starts.insert(num);
+			}
+		}
+
+		int record = 1; // There will alsways be a seq. of len. 1
+		for (const int start : starts) {
+			int count = 0;
+			for (int num = start; numbers.count(num) != 0; ++num) {
+				++count;
+			}
+			record = std::max(record, count);
+		}
+
+		return record;
+	}
 };
-
-int main() {
-
-	const vector<int> nums{100,4,200,1,3,2};
-	Solution soln;
-	cout << soln.longestConsecutive(nums) << endl;
-}
