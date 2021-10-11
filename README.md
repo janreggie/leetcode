@@ -1,6 +1,10 @@
 # leetcode
 
 Contains solutions to the problems at [leetcode](https://leetcode.com/).
+Mostly in C++ because it's a language that works,
+although Rust looks tempting.
+
+View my profile at <https://leetcode.com/janreggie/>.
 
 ## Useful problems
 
