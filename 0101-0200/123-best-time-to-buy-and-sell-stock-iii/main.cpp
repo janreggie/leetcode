@@ -4,7 +4,7 @@
 class Solution
 {
 public:
-	int maxProfit(vector<int>& prices)
+	int maxProfit(std::vector<int>& prices)
 	{
 		int minus_inf = std::numeric_limits<int>::min();
 		long s0 = 0, b1 = minus_inf, s1 = minus_inf, b2 = minus_inf, s2 = minus_inf;
